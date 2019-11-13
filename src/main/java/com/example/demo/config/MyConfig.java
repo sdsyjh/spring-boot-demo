@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 public class MyConfig {
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder){
+    	builder.setConnectTimeout(Duration.ofSeconds(60));
         RestTemplate restTemplate=builder.build();
         restTemplate.getInterceptors().add(new ClientHttpRequestInterceptor() {
 			

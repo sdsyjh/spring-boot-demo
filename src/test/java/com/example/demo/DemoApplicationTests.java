@@ -2,8 +2,12 @@ package com.example.demo;
 
 import javax.annotation.Resource;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,9 +22,23 @@ import com.example.demo.model.User;
 @SpringBootTest
 class DemoApplicationTests {
 
+	private static ConfigurableApplicationContext server;
+	
 	@Resource(name="restTemplate")
 	private RestTemplate restTemplate;
 	
+    @BeforeAll
+    public static void startServer() {
+    	System.out.println("*********************************");
+    	server = SpringApplication.run(DemoApplication.class);
+    }
+
+    @AfterAll
+    public static void closeServer() {
+    	System.out.println("------------------------------------------");
+    	server.close();
+    }
+    
 	@Test
 	void test01() {
 		HttpHeaders headers = new HttpHeaders();
