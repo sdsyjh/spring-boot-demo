@@ -6,6 +6,7 @@ import java.util.List;
 public class User{
 	private int id;
 	private String name;
+	private Order lastOrder;
 	private List<Order> orders=new ArrayList<>();
 	public int getId() {
 		return id;
@@ -19,7 +20,12 @@ public class User{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public void setLastOrder(Order lastOrder) {
+		this.lastOrder = lastOrder;
+	}
+	public Order getLastOrder() {
+		return lastOrder;
+	}
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -28,7 +34,6 @@ public class User{
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", orders=" + orders + "]";
+		return "User [id=" + id + ", name=" + name + ", lastOrder=" + lastOrder + ", orders=" + orders + "]";
 	}
-
 }
