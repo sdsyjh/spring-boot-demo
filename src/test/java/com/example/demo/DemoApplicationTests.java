@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,6 +19,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.model.User;
+import com.example.demo.service.KafkaProducer;
 
 @SpringBootTest
 class DemoApplicationTests {
@@ -76,4 +78,10 @@ class DemoApplicationTests {
 		System.out.println(response);
 	}
 
+	@Autowired
+	private KafkaProducer producer; 
+	@Test
+	public void testKafkaProducer() {
+		producer.send();
+	}
 }
